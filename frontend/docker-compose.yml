@@ -1,0 +1,17 @@
+version: '3.10'
+
+services:
+  flask_app:
+    build: ./flask_app
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./flask_app/models:/app/models
+      - ./flask_app/uploads:/app/uploads
+
+  streamlit_app:
+    build: ./streamlit_app
+    ports:
+      - "8501:8501"
+    depends_on:
+      - flask_app
